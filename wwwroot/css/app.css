@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
 
 :root {
-    --primary: #1a1a1a;
-    --secondary: #f4f1ea; /* Creamy background */
-    --accent: #c5a368;    /* Muted gold */
-    --text: #333333;
-    --text-light: #666666;
+    --primary: #3c3836;    /* Soft warm charcoal */
+    --secondary: #fdf6e9;  /* Warm bone/feta cream from image background */
+    --accent: #d7c4a3;     /* Elegant champagne/gold */
+    --text: #282828;       /* Deep warm grey-black */
+    --text-light: #928374; /* Muted warm taupe */
     --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.8);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --glass: rgba(253, 246, 233, 0.85);
+    --glass-border: rgba(215, 196, 163, 0.3);
+    --transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 * {
@@ -22,12 +22,15 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--secondary);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, .font-serif {
     font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
 }
 
 /* Layout */
@@ -54,9 +57,9 @@ header {
 
 header.scrolled {
     background: var(--glass);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
-    padding: 1rem 0;
+    padding: 0.8rem 0;
 }
 
 nav {
@@ -137,6 +140,8 @@ nav {
 .btn-primary {
     background: var(--primary);
     color: var(--white);
+    border-color: var(--primary);
+    border-radius: 0;
 }
 
 .btn-primary:hover {
@@ -172,14 +177,14 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     .grid-3 {
         grid-template-columns: 1fr;
-    }
-    .nav-links {
-        display: none; /* Mobile menu logic to be added later */
     }
 }
 

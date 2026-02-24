@@ -13,8 +13,8 @@
 
 <body>
     <div id="app">
-        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f4f1ea; font-family: 'Playfair Display', serif;">
-            <h1 style="font-size: 2rem; letter-spacing: 5px; color: #1a1a1a; margin-bottom: 2rem;">CLARA STUDIO LOUNGE</h1>
+        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f9f4ec; font-family: 'Playfair Display', serif;">
+            <h1 style="font-size: 2rem; letter-spacing: 5px; color: #2d2926; margin-bottom: 2rem;">CLARA STUDIO LOUNGE</h1>
             <div class="loader"></div>
         </div>
     </div>
@@ -25,6 +25,16 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        window.onscroll = function() {
+            var header = document.querySelector('header');
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+    </script>
     
     <style>
         .loader {
