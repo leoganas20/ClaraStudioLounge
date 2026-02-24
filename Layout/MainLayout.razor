@@ -1,0 +1,114 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <header class="@headerClass">
+        <div class="container nav-container">
+            <a href="/" class="logo">CLARA STUDIO LOUNGE</a>
+            
+            <button class="mobile-nav-toggle" @onclick="ToggleNav">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links @(isNavOpen ? "open" : "")">
+                <li><a href="/" @onclick="CloseNav">Home</a></li>
+                <li><a href="#portfolio" @onclick="CloseNav">Portfolio</a></li>
+                <li><a href="#services" @onclick="CloseNav">Services</a></li>
+                <li><a href="#about" @onclick="CloseNav">About</a></li>
+                <li><a href="#contact" @onclick="CloseNav">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        @Body
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="/" class="logo" style="color: white;">CLARA STUDIO LOUNGE</a>
+                    <p style="margin-top: 1rem; color: #999;">Capturing your most precious moments with elegance and style.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Pinterest</a>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; pt-3; border-top: 1px solid #333; text-align: center; color: #666; font-size: 0.8rem;">
+                &copy; @DateTime.Now.Year Clara Studio Lounge. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</div>
+
+@code {
+    private bool isNavOpen = false;
+    private string headerClass = "";
+
+    private void ToggleNav() => isNavOpen = !isNavOpen;
+    private void CloseNav() => isNavOpen = false;
+
+    // Note: Scroll listener usually requires JS Interop in Blazor WASM.
+    // For this static web approach, we'll keep it simple first.
+}
+
+<style>
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobile-nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .bar {
+        width: 25px;
+        height: 2px;
+        background-color: var(--primary);
+        transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+        .mobile-nav-toggle {
+            display: flex;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--white);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1001;
+        }
+
+        .nav-links.open {
+            right: 0;
+        }
+
+        .nav-links li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-links a {
+            font-size: 1.2rem;
+        }
+    }
+</style>

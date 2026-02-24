@@ -1,0 +1,121 @@
+﻿@page "/"
+
+<section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1920&q=80');">
+    <div class="container hero-content">
+        <h1 class="animate-up">Clara Studio Lounge</h1>
+        <p class="animate-up delay-1">Wedding Photography & Coordination</p>
+        <div class="animate-up delay-2" style="margin-top: 2rem;">
+            <a href="#contact" class="btn btn-primary">Book a Session</a>
+            <a href="#portfolio" class="btn btn-outline" style="margin-left: 1rem;">View Gallery</a>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" class="container">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 3rem; margin-bottom: 1rem;">Love Stories</h2>
+        <p style="color: var(--text-light); text-transform: uppercase; letter-spacing: 2px;">A glimpse into our favorite moments</p>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item animate-up">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding Reception">
+            <div class="gallery-overlay">
+                <h3>Grand Celebrations</h3>
+                <p>Capturing the joy of the family</p>
+            </div>
+        </div>
+        <div class="gallery-item animate-up delay-1">
+            <img src="https://images.unsplash.com/photo-1519225495045-3b363285e64d?auto=format&fit=crop&w=800&q=80" alt="Bridal Details">
+            <div class="gallery-overlay">
+                <h3>The Fine Details</h3>
+                <p>Preserving the little things</p>
+            </div>
+        </div>
+        <div class="gallery-item animate-up delay-2">
+            <img src="https://images.unsplash.com/photo-1465495910483-0d67498c8f1e?auto=format&fit=crop&w=800&q=80" alt="Couple Portrait">
+            <div class="gallery-overlay">
+                <h3>Intimate Portraits</h3>
+                <p>Focusing on the connection</p>
+            </div>
+        </div>
+        <div class="gallery-item animate-up">
+            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80" alt="Wedding Rings">
+            <div class="gallery-overlay">
+                <h3>Eternal Promises</h3>
+                <p>Symbolizing your love</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" style="background-color: var(--white);">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Our Services</h2>
+            <p style="color: var(--text-light); text-transform: uppercase; letter-spacing: 2px;">Comprehensive care for your special day</p>
+        </div>
+
+        <div class="grid grid-3">
+            <div class="card animate-up">
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">Photography</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Professional wedding photography including engagement sessions, full-day coverage, and high-resolution digital galleries.</p>
+                <ul style="list-style: none; color: var(--text-light); font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.5rem;">✓ 8-12 Hours Coverage</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Two Lead Photographers</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Online Gallery & Prints</li>
+                </ul>
+            </div>
+            <div class="card animate-up delay-1">
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">Coordination</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Stress-free wedding planning and on-the-day coordination to ensure every detail of your vision comes to life.</p>
+                <ul style="list-style: none; color: var(--text-light); font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.5rem;">✓ Timeline Management</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Vendor Liaison</li>
+                    <li style="margin-bottom: 0.5rem;">✓ On-site Supervision</li>
+                </ul>
+            </div>
+            <div class="card animate-up delay-2">
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">Full Packages</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">The ultimate wedding experience combining our elite photography and full-service event coordination.</p>
+                <ul style="list-style: none; color: var(--text-light); font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.5rem;">✓ Personalized Planning</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Engagement session</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Luxury Photo Album</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="container" style="text-align: center;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="font-size: 3rem; margin-bottom: 1rem;">Start Your Journey</h2>
+        <p style="color: var(--text-light); margin-bottom: 3rem;">We would love to hear from you and learn more about your dream wedding. Let's create something beautiful together.</p>
+        
+        <form @onsubmit:preventDefault style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+            <input type="text" placeholder="Full Name" style="padding: 1rem; border: 1px solid #ddd; font-family: inherit;">
+            <input type="email" placeholder="Email Address" style="padding: 1rem; border: 1px solid #ddd; font-family: inherit;">
+            <textarea placeholder="Tell us about your wedding..." rows="5" style="padding: 1rem; border: 1px solid #ddd; font-family: inherit; resize: vertical;"></textarea>
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Send Inquiry</button>
+        </form>
+    </div>
+</section>
+
+<style>
+    .animate-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+
+    @@keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
