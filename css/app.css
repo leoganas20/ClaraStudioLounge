@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
 
 :root {
-    --primary: #3c3836;    /* Soft warm charcoal */
-    --secondary: #fdf6e9;  /* Warm bone/feta cream from image background */
+    --primary: #2d2621;    /* Softer charcoal ink */
+    --secondary: #fcfaf7;  /* Very light Paperless Post cream */
     --accent: #d7c4a3;     /* Elegant champagne/gold */
-    --text: #282828;       /* Deep warm grey-black */
+    --text: #332d29;       /* Deep warm charcoal */
     --text-light: #928374; /* Muted warm taupe */
     --white: #ffffff;
-    --glass: rgba(253, 246, 233, 0.85);
-    --glass-border: rgba(215, 196, 163, 0.3);
-    --transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+    --glass: rgba(252, 250, 247, 0.9);
+    --glass-border: rgba(215, 196, 163, 0.2);
+    --transition: all 0.4s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 * {
@@ -46,35 +46,45 @@ section {
 
 /* Navigation */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     z-index: 1000;
     transition: var(--transition);
-    padding: 1.5rem 0;
+    padding: 3rem 0 1.5rem 0;
+    background-color: var(--secondary);
 }
 
 header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
     background: var(--glass);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
-    padding: 0.8rem 0;
+    padding: 1rem 0;
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 300;
     color: var(--primary);
     text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-transform: none;
+    font-family: 'Playfair Display', serif;
 }
 
 .nav-links {

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ClaraStudioLounge",
   "resources": {
-    "hash": "sha256-ic2vTkJJNZwZWqv9mP6sMzTSv9oRKHuJ+d0BbqFbkvY=",
+    "hash": "sha256-nw5gxMsX+2NOmQHjTkuIb38m+8yI2WaCtgP1+HaIvGA=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Components.w6aipgc3wi.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.p2p2euabau.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -34,7 +34,7 @@
       "System.Text.Json.44ka4i6vyl.wasm": "System.Text.Json.wasm",
       "System.Text.RegularExpressions.vbr1gezq3a.wasm": "System.Text.RegularExpressions.wasm",
       "System.Private.CoreLib.6rx8s3g3wu.wasm": "System.Private.CoreLib.wasm",
-      "ClaraStudioLounge.9kbt2fa5rh.wasm": "ClaraStudioLounge.wasm",
+      "ClaraStudioLounge.gyn4mrodr9.wasm": "ClaraStudioLounge.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.xidrk0eo52.js": "dotnet.native.js",
       "dotnet.native.y68cfu4kuf.wasm": "dotnet.native.wasm",
@@ -91,7 +91,7 @@
       "System.Text.Encodings.Web.qyidcnqnsa.wasm": "sha256-QkmFquk4BHgFDVkCakoTzmLIV9UuzTDf4Fw62XFkzsA=",
       "System.Text.Json.44ka4i6vyl.wasm": "sha256-rE/oUl3hFFuV5WDnzKxT7e6Ho8dVBaiJCsF39+n8TrQ=",
       "System.Text.RegularExpressions.vbr1gezq3a.wasm": "sha256-ZQejR0x7+S2JJA2Z1IkLWqWXukLRjL/c/zguib2fpHo=",
-      "ClaraStudioLounge.9kbt2fa5rh.wasm": "sha256-yZ3UAykpJMN6V4/n2PA6ThvHvDy5gSx+vgV6Wgb3APs="
+      "ClaraStudioLounge.gyn4mrodr9.wasm": "sha256-SDQoeFW6wR5++7UDIMmApgB3JFSc+Xi1Z8VO0atp52E="
     }
   },
   "cacheBootResources": true,
