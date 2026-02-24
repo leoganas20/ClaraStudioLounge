@@ -2,22 +2,26 @@
 
 <div class="page">
     <header class="@headerClass">
-        <div class="container nav-container">
-            <a href="/" class="logo">Clara Studio Lounge</a>
-            
-            <button class="mobile-nav-toggle" @onclick="ToggleNav">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+        <div class="container">
+            <nav>
+                <div class="logo-wrapper">
+                    <a href="/" class="logo">Paperless Post</a>
+                </div>
+                
+                <button class="mobile-nav-toggle" @onclick="ToggleNav">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
 
-            <ul class="nav-links @(isNavOpen ? "open" : "")">
-                <li><a href="/" @onclick="CloseNav">Home</a></li>
-                <li><a href="#portfolio" @onclick="CloseNav">Portfolio</a></li>
-                <li><a href="#services" @onclick="CloseNav">Services</a></li>
-                <li><a href="#about" @onclick="CloseNav">About</a></li>
-                <li><a href="#contact" @onclick="CloseNav">Contact</a></li>
-            </ul>
+                <ul class="nav-links @(isNavOpen ? "open" : "")">
+                    <li><a href="/" @onclick="CloseNav">Home</a></li>
+                    <li><a href="#portfolio" @onclick="CloseNav">Portfolio</a></li>
+                    <li><a href="#services" @onclick="CloseNav">Services</a></li>
+                    <li><a href="#about" @onclick="CloseNav">About</a></li>
+                    <li><a href="#contact" @onclick="CloseNav">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
