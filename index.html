@@ -28,11 +28,28 @@
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
         window.setupScrollListener = (dotNetHelper) => {
-            window.addEventListener('scroll', () => {
-                dotNetHelper.invokeMethodAsync('OnScroll', window.scrollY);
-            });
+            if (!window.scrollHelpers) window.scrollHelpers = [];
+            window.scrollHelpers.push(dotNetHelper);
+            
+            if (!window.hasScrollListener) {
+                window.addEventListener('scroll', () => {
+                    window.scrollHelpers.forEach(helper => {
+                        try {
+                            helper.invokeMethodAsync('OnScroll', window.scrollY);
+                        } catch (e) {
+                            // Helper might be disposed
+                        }
+                    });
+                });
+                window.hasScrollListener = true;
+            }
         };
     </script>
+    <style>
+        #blazor-error-ui {
+            display: none !important;
+        }
+    </style>
     
     <style>
         .loader {
