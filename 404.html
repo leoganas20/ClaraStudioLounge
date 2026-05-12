@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="ClaraStudioLounge.styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
     <div id="app">
         <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f9f4ec; font-family: 'Playfair Display', serif;">
-            <h1 style="font-size: 2rem; letter-spacing: 5px; color: #2d2926; margin-bottom: 2rem;">CLARA STUDIO LOUNGE</h1>
+            <img src="images/logo.png" alt="Clara Studio Lounge" style="height: 60px; margin-bottom: 2rem; object-fit: contain;">
             <div class="loader"></div>
         </div>
     </div>
@@ -26,13 +27,10 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
-        window.onscroll = function() {
-            var header = document.querySelector('header');
-            if (window.pageYOffset > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        window.setupScrollListener = (dotNetHelper) => {
+            window.addEventListener('scroll', () => {
+                dotNetHelper.invokeMethodAsync('OnScroll', window.scrollY);
+            });
         };
     </script>
     
