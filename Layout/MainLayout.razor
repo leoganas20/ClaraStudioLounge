@@ -1,26 +1,27 @@
 @inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 
 <div class="page">
-    <header class="@headerClass">
+    <header class="@(isScrolled ? "scrolled" : "")">
         <div class="container">
             <nav>
                 <div class="logo-wrapper">
-                    <a href="/" class="logo">Clara Studio Lounge</a>
+                    <a href="/" class="logo">
+                        <img src="images/logo.png" alt="Clara Studio Lounge" class="logo-img" />
+                    </a>
                 </div>
+
+                <ul class="nav-links @(isNavOpen ? "open" : "")">
+                    <li><a href="/" @onclick="CloseNav" class="caps">The Studio</a></li>
+                    <li><a href="#portfolio" @onclick="CloseNav" class="caps">Portfolio</a></li>
+                    <li><a href="#services" @onclick="CloseNav" class="caps">Services</a></li>
+                    <li><a href="#contact" @onclick="CloseNav" class="caps">Inquire</a></li>
+                </ul>
                 
-                <button class="mobile-nav-toggle" @onclick="ToggleNav">
-                    <span class="bar"></span>
+                <button class="mobile-nav-toggle @(isNavOpen ? "active" : "")" @onclick="ToggleNav">
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
-
-                <ul class="nav-links @(isNavOpen ? "open" : "")">
-                    <li><a href="/" @onclick="CloseNav">Home</a></li>
-                    <li><a href="#portfolio" @onclick="CloseNav">Portfolio</a></li>
-                    <li><a href="#services" @onclick="CloseNav">Services</a></li>
-                    <li><a href="#about" @onclick="CloseNav">About</a></li>
-                    <li><a href="#contact" @onclick="CloseNav">Contact</a></li>
-                </ul>
             </nav>
         </div>
     </header>
@@ -29,21 +30,35 @@
         @Body
     </main>
 
-    <footer>
+    <footer style="background-color: var(--primary); color: var(--secondary); padding: 8rem 0 4rem 0;">
         <div class="container">
-            <div class="footer-content">
-                <div>
-                    <a href="/" class="logo" style="color: white; font-size: 1.2rem;">Clara Studio Lounge</a>
-                    <p style="margin-top: 1rem; color: #a89984;">Capturing your most precious moments with elegance and style.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <img src="images/logo.png" alt="Clara Studio Lounge" class="logo-img footer-logo" />
+                    </a>
+                    <p style="margin-top: 2rem; color: var(--text-light); max-width: 300px; line-height: 2;">A boutique creative studio dedicated to the art of visual storytelling and timeless elegance.</p>
                 </div>
-                <div class="social-links">
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
-                    <a href="#">Pinterest</a>
+                <div class="footer-nav">
+                    <h4 class="caps" style="color: var(--accent); margin-bottom: 2rem;">Navigate</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
+                        <li><a href="#portfolio" style="color: var(--secondary); text-decoration: none; font-size: 0.9rem;">Collections</a></li>
+                        <li><a href="#services" style="color: var(--secondary); text-decoration: none; font-size: 0.9rem;">The Experience</a></li>
+                        <li><a href="#about" style="color: var(--secondary); text-decoration: none; font-size: 0.9rem;">Philosophy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 class="caps" style="color: var(--accent); margin-bottom: 2rem;">Follow</h4>
+                    <div class="social-links">
+                        <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+                    </div>
                 </div>
             </div>
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #504945; text-align: center; color: #928374; font-size: 0.8rem;">
-                &copy; @DateTime.Now.Year Clara Studio Lounge. All rights reserved.
+            <div style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; color: var(--text-light); font-size: 0.75rem;" class="caps">
+                <span>&copy; @DateTime.Now.Year CLARA STUDIO LOUNGE</span>
+                <span>EST. 2024</span>
             </div>
         </div>
     </footer>
@@ -51,36 +66,81 @@
 
 @code {
     private bool isNavOpen = false;
-    private string headerClass = "";
+    private bool isScrolled = false;
 
     private void ToggleNav() => isNavOpen = !isNavOpen;
     private void CloseNav() => isNavOpen = false;
 
-    // Note: Scroll listener usually requires JS Interop in Blazor WASM.
-    // For this static web approach, we'll keep it simple first.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("setupScrollListener", DotNetObjectReference.Create(this));
+        }
+    }
+
+    [JSInvokable]
+    public void OnScroll(double scrollY)
+    {
+        var shouldBeScrolled = scrollY > 50;
+        if (isScrolled != shouldBeScrolled)
+        {
+            isScrolled = shouldBeScrolled;
+            StateHasChanged();
+        }
+    }
 }
 
 <style>
-    .nav-container {
+    nav {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
+    }
+
+    .logo-wrapper {
+        justify-content: flex-start;
+        width: auto;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr;
+        gap: 4rem;
     }
 
     .mobile-nav-toggle {
         display: none;
         flex-direction: column;
-        gap: 5px;
+        gap: 8px;
         background: none;
         border: none;
         cursor: pointer;
+        z-index: 1002;
     }
 
-    .bar {
-        width: 25px;
-        height: 2px;
+    .mobile-nav-toggle .bar {
+        width: 30px;
+        height: 1px;
         background-color: var(--primary);
         transition: var(--transition);
+    }
+
+    .mobile-nav-toggle.active .bar:first-child {
+        transform: translateY(4.5px) rotate(45deg);
+    }
+
+    .mobile-nav-toggle.active .bar:last-child {
+        transform: translateY(-4.5px) rotate(-45deg);
+    }
+
+    @@media (max-width: 992px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
     }
 
     @@media (max-width: 768px) {
@@ -92,27 +152,24 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
+            width: 100%;
             height: 100vh;
-            background: var(--white);
+            background: var(--secondary);
             flex-direction: column;
             justify-content: center;
             align-items: center;
             transition: var(--transition);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
             z-index: 1001;
+            gap: 3rem;
         }
 
         .nav-links.open {
             right: 0;
         }
 
-        .nav-links li {
-            margin: 1.5rem 0;
-        }
-
         .nav-links a {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
         }
     }
 </style>
