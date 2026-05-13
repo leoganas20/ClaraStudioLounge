@@ -29,35 +29,39 @@
         </div>
     </div>
 
-    <div class="gallery">
-        <div class="gallery-item animate-up">
-            <img src="images/highlights/IMG_2646.JPG" alt="Family Portraits">
-            <div class="gallery-overlay">
-                <p class="caps">Collection I</p>
-                <h3>Family Portraits</h3>
+    <div class="portfolio-scroller-wrapper">
+        <button class="scroller-btn prev mobile-only" @onclick="ScrollPortfolioPrev"></button>
+        <div class="gallery" @ref="portfolioRef">
+            <div class="gallery-item animate-up">
+                <img src="images/highlights/IMG_2646.JPG" alt="Family Portraits">
+                <div class="gallery-overlay">
+                    <p class="caps">Collection I</p>
+                    <h3>Family Portraits</h3>
+                </div>
+            </div>
+            <div class="gallery-item animate-up delay-1">
+                <img src="images/highlights/IMG_2616.JPG" alt="Kiddy Pictures">
+                <div class="gallery-overlay">
+                    <p class="caps">Collection II</p>
+                    <h3>Kiddy Pictures</h3>
+                </div>
+            </div>
+            <div class="gallery-item animate-up delay-2">
+                <img src="images/highlights/691638852_17879747304587784_1378444673681067703_n.jpg" alt="Miranda Shoot">
+                <div class="gallery-overlay">
+                    <p class="caps">Collection III</p>
+                    <h3>Miranda Shoot</h3>
+                </div>
+            </div>
+            <div class="gallery-item animate-up delay-3">
+                <img src="images/highlights/image.png" alt="Studio Atmosphere">
+                <div class="gallery-overlay">
+                    <p class="caps">Collection IV</p>
+                    <h3>Friends</h3>
+                </div>
             </div>
         </div>
-        <div class="gallery-item animate-up delay-1">
-            <img src="images/highlights/IMG_2616.JPG" alt="Kiddy Pictures">
-            <div class="gallery-overlay">
-                <p class="caps">Collection II</p>
-                <h3>Kiddy Pictures</h3>
-            </div>
-        </div>
-        <div class="gallery-item animate-up delay-2">
-            <img src="images/highlights/691638852_17879747304587784_1378444673681067703_n.jpg" alt="Miranda Shoot">
-            <div class="gallery-overlay">
-                <p class="caps">Collection III</p>
-                <h3>Miranda Shoot</h3>
-            </div>
-        </div>
-        <div class="gallery-item animate-up delay-3">
-            <img src="images/highlights/image.png" alt="Studio Atmosphere">
-            <div class="gallery-overlay">
-                <p class="caps">Collection IV</p>
-                <h3>Friends</h3>
-            </div>
-        </div>
+        <button class="scroller-btn next mobile-only" @onclick="ScrollPortfolioNext"></button>
     </div>
 </section>
 
@@ -405,6 +409,7 @@
 
     private double scrollOffset = 0;
     private ElementReference scrollerRef;
+    private ElementReference portfolioRef;
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
     private System.Timers.Timer? _timer;
@@ -450,11 +455,25 @@
             }
         ");
     }
-
     private async Task ScrollPrev()
     {
         await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.scroller-container')?.scrollBy({ left: -400, behavior: 'smooth' })");
         ResetTimer();
+    }
+
+    private async Task ScrollPortfolioNext()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", @"
+            const container = document.querySelector('.gallery');
+            if (container) {
+                container.scrollBy({ left: container.clientWidth * 0.8, behavior: 'smooth' });
+            }
+        ");
+    }
+
+    private async Task ScrollPortfolioPrev()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.gallery')?.scrollBy({ left: -window.innerWidth * 0.8, behavior: 'smooth' })");
     }
 
     private void ResetTimer()

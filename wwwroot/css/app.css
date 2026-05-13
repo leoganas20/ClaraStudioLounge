@@ -552,6 +552,34 @@ footer {
     }
 }
 
+.portfolio-scroller-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.mobile-only {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex !important;
+    }
+    
+    .portfolio-scroller-wrapper .scroller-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 50%;
+    }
+    
+    .portfolio-scroller-wrapper .scroller-btn::before {
+        width: 12px;
+        height: 12px;
+        border-color: var(--white);
+    }
+}
+
 /* Pricing Tables */
 .rates-section {
     padding-top: 50px;
@@ -638,5 +666,28 @@ footer {
     .scroller-item {
         flex: 0 0 300px;
         height: 400px;
+    }
+
+    .gallery {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gallery-item {
+        flex: 0 0 85vw;
+        height: 500px;
+        scroll-snap-align: center;
     }
 }
